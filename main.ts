@@ -10,67 +10,67 @@ let pantalla = 0
 pantalla = 1
 I2C_LCD1602.LcdInit(39)
 I2C_LCD1602.clear()
-makerbit.lcdMakeCharacter(LcdChar.c1, makerbit.lcdCharacterPixels(`
-    # . # . #
-    # . # . #
-    # . # . #
-    . . . . .
-    . # # # .
-    . # # # .
-    . . # . .
-    . . # . .
-    `))
-makerbit.lcdMakeCharacter(LcdChar.c2, makerbit.lcdCharacterPixels(`
-    . . # . .
-    . # # # .
-    # # # # #
-    # # # # #
-    # # # # #
-    . # # # .
-    . . . . .
-    . . . . .
-    `))
-makerbit.lcdMakeCharacter(LcdChar.c3, makerbit.lcdCharacterPixels(`
-    . . # # .
-    . # # # .
-    # # # # #
-    . . . . .
-    . # . # .
-    . . # . .
-    # . . . #
-    . . . # .
-    `))
-makerbit.lcdMakeCharacter(LcdChar.c4, makerbit.lcdCharacterPixels(`
-    . # # . #
-    . # # . .
-    . # # . #
-    . # # . .
-    # # # # .
-    # # # # .
-    # # # # .
-    . # # . .
-    `))
-makerbit.lcdMakeCharacter(LcdChar.c5, makerbit.lcdCharacterPixels(`
-    # . # . #
-    . . . . .
-    . . . . .
-    . . . . .
-    . . . . .
-    . . . . .
-    . . . . .
-    # . # . #
-    `))
-makerbit.lcdMakeCharacter(LcdChar.c6, makerbit.lcdCharacterPixels(`
-    # . # . #
-    # . # . #
-    # . # . #
-    # . # . #
-    # . # . #
-    # . # . #
-    # . # . #
-    # . # . #
-    `))
 basic.forever(function () {
+    makerbit.lcdMakeCharacter(LcdChar.c1, makerbit.lcdCharacterPixels(`
+        # . # . #
+        # . # . #
+        # . # . #
+        . . . . .
+        . # # # .
+        . # # # .
+        . . # . .
+        . . # . .
+        `))
+    makerbit.lcdMakeCharacter(LcdChar.c2, makerbit.lcdCharacterPixels(`
+        . . # . .
+        . # # # .
+        # # # # #
+        # # # # #
+        # # # # #
+        . # # # .
+        . . . . .
+        . . . . .
+        `))
+    makerbit.lcdMakeCharacter(LcdChar.c3, makerbit.lcdCharacterPixels(`
+        . . # # .
+        . # # # .
+        # # # # #
+        . . . . .
+        . # . # .
+        . . # . .
+        # . . . #
+        . . . # .
+        `))
+    makerbit.lcdMakeCharacter(LcdChar.c4, makerbit.lcdCharacterPixels(`
+        . # # . #
+        . # # . .
+        . # # . #
+        . # # . .
+        # # # # .
+        # # # # .
+        # # # # .
+        . # # . .
+        `))
+    makerbit.lcdMakeCharacter(LcdChar.c5, makerbit.lcdCharacterPixels(`
+        # . # . #
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        # . # . #
+        `))
+    makerbit.lcdMakeCharacter(LcdChar.c6, makerbit.lcdCharacterPixels(`
+        # . # . #
+        # . # . #
+        # . # . #
+        # . # . #
+        # . # . #
+        # . # . #
+        # . # . #
+        # . # . #
+        `))
     if (pantalla == 1) {
         makerbit.lcdShowCharacter1602(LcdChar.c1, makerbit.position1602(LcdPosition1602.Pos17))
         makerbit.showStringOnLcd1602("Luz: ", makerbit.position1602(LcdPosition1602.Pos19), 5)
@@ -103,21 +103,14 @@ basic.forever(function () {
         )
     }
     makerbit.showStringOnLcd1602("" + (valorObtenido), makerbit.position1602(LcdPosition1602.Pos26), 4)
-    for (let index = 0; index <= 16; index++) {
-        makerbit.lcdShowCharacter1602(LcdChar.c5, index)
+    for (let index = 0; index <= 15; index++) {
+        makerbit.lcdShowCharacter1602(LcdChar.c5, index + 1)
     }
-    for (let index = 0; index <= 16; index++) {
-        valorObtenido += -6.25
+    for (let index = 0; index <= 15; index++) {
         if (valorObtenido > 0) {
-            makerbit.lcdShowCharacter1602(LcdChar.c6, index)
+            valorObtenido += -6.25
+            makerbit.lcdShowCharacter1602(LcdChar.c6, index + 1)
         }
     }
-    for (let index = 0; index <= 16; index++) {
-        valorObtenido += -6.25
-        if (valorObtenido > 0) {
-            makerbit.lcdShowCharacter1602(LcdChar.c6, index)
-        } else {
-            makerbit.lcdShowCharacter1602(LcdChar.c5, index)
-        }
-    }
+    basic.pause(500)
 })
