@@ -4,7 +4,6 @@ input.onButtonPressed(Button.A, function () {
     } else {
         pantalla = 1
     }
-    makerbit.showStringOnLcd1602("" + (pantalla), makerbit.position1602(LcdPosition1602.Pos8), 6)
 })
 let pantalla = 0
 pantalla = 1
@@ -20,14 +19,60 @@ makerbit.lcdMakeCharacter(LcdChar.c1, makerbit.lcdCharacterPixels(`
     . . # . .
     . . # . .
     `))
+makerbit.lcdMakeCharacter(LcdChar.c2, makerbit.lcdCharacterPixels(`
+    . . # . .
+    . # # # .
+    # # # # #
+    # # # # #
+    # # # # #
+    . # # # .
+    . . . . .
+    . . . . .
+    `))
+makerbit.lcdMakeCharacter(LcdChar.c3, makerbit.lcdCharacterPixels(`
+    . . # # .
+    . # # # .
+    # # # # #
+    . . . . .
+    . # . # .
+    . . # . .
+    # . . . #
+    . . . # .
+    `))
+makerbit.lcdMakeCharacter(LcdChar.c4, makerbit.lcdCharacterPixels(`
+    . # # . #
+    . # # . .
+    . # # . #
+    . # # . .
+    # # # # .
+    # # # # .
+    # # # # .
+    . # # . .
+    `))
+makerbit.lcdMakeCharacter(LcdChar.c5, makerbit.lcdCharacterPixels(`
+    # . # . #
+    . . . . .
+    . . . . .
+    . . . . .
+    . . . . .
+    . . . . .
+    . . . . .
+    # . # . #
+    `))
+makerbit.lcdMakeCharacter(LcdChar.c6, makerbit.lcdCharacterPixels(`
+    # . # . #
+    # . # . #
+    # . # . #
+    # . # . #
+    # . # . #
+    # . # . #
+    # . # . #
+    # . # . #
+    `))
 basic.forever(function () {
-    serial.writeLine("Luz: " + input.lightLevel())
-    serial.writeLine("Temperatura" + input.temperature())
-    serial.writeLine("Sonido" + "Mundo")
-    basic.pause(500)
     if (pantalla == 1) {
         makerbit.lcdShowCharacter1602(LcdChar.c1, makerbit.position1602(LcdPosition1602.Pos17))
-        makerbit.showStringOnLcd1602("Luz: ", makerbit.position1602(LcdPosition1602.Pos19), 6)
+        makerbit.showStringOnLcd1602("Luz: ", makerbit.position1602(LcdPosition1602.Pos19), 5)
         makerbit.showStringOnLcd1602("" + (pins.map(
         input.lightLevel(),
         0,
@@ -35,7 +80,7 @@ basic.forever(function () {
         0,
         100
         )), makerbit.position1602(LcdPosition1602.Pos28), 4)
-        makerbit.showStringOnLcd1602("%", makerbit.position1602(LcdPosition1602.Pos32), 6)
+        makerbit.showStringOnLcd1602("%", makerbit.position1602(LcdPosition1602.Pos32), 1)
     } else if (pantalla == 2) {
         makerbit.lcdShowCharacter1602(LcdChar.c2, makerbit.position1602(LcdPosition1602.Pos17))
         makerbit.showStringOnLcd1602("Temperatura:  ", makerbit.position1602(LcdPosition1602.Pos19), 6)
