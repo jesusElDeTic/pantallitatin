@@ -5,6 +5,7 @@ input.onButtonPressed(Button.A, function () {
         pantalla = 1
     }
 })
+let cuantosCuadraditos = 0
 let valorObtenido = 0
 let pantalla = 0
 pantalla = 1
@@ -103,14 +104,18 @@ basic.forever(function () {
         )
     }
     makerbit.showStringOnLcd1602("" + (valorObtenido), makerbit.position1602(LcdPosition1602.Pos26), 4)
+    cuantosCuadraditos = pins.map(
+    valorObtenido,
+    0,
+    100,
+    1,
+    16
+    )
     for (let index = 0; index <= 15; index++) {
         makerbit.lcdShowCharacter1602(LcdChar.c5, index + 1)
     }
-    for (let index = 0; index <= 15; index++) {
-        if (valorObtenido > 0) {
-            valorObtenido += -6.25
-            makerbit.lcdShowCharacter1602(LcdChar.c6, index + 1)
-        }
+    for (let index = 0; index <= cuantosCuadraditos; index++) {
+        makerbit.lcdShowCharacter1602(LcdChar.c6, index)
     }
     basic.pause(500)
 })
